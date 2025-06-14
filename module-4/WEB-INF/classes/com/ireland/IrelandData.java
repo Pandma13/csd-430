@@ -15,6 +15,8 @@ public class IrelandData implements Serializable {
     private String[] locations;
     private String[] populations;
     private String[] landmarks;
+    private String[] foundingYear;
+    private String[] famousFood;
     
     // Default constructor
     public IrelandData() {
@@ -42,6 +44,22 @@ public class IrelandData implements Serializable {
             "King John's Castle",
             "Waterford Crystal Factory"
         };
+
+        foundingYear = new String[] {
+            "988 AD",
+            "1124 AD",
+            "6th Century",
+            "812 AD",
+            "914 AD"
+        };
+
+        famousFood = new String[] {
+            "Irish Stew & Guinness",
+            "Galway Oysters",
+            "Cork Beef",
+            "Limerick Ham",
+            "Blaa (Traditional Bread)"
+        };
     }
     
     // Getters and setters
@@ -67,6 +85,22 @@ public class IrelandData implements Serializable {
     
     public void setLandmarks(String[] landmarks) {
         this.landmarks = landmarks;
+    }
+
+    public String[] getFoundingYear() {
+        return foundingYear;
+    }
+
+    public void setFoundingYear(String[] foundingYear) {
+        this.foundingYear = foundingYear;
+    }
+
+    public String[] getFamousFood() {
+        return famousFood;
+    }
+
+    public void setFamousFood(String[] famousFood) {
+        this.famousFood = famousFood;
     }
     
     // Helper method to get number of cities

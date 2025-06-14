@@ -73,6 +73,8 @@
                     <th>City/Region</th>
                     <th>Population</th>
                     <th>Famous Landmark</th>
+                    <th>Founded</th>
+                    <th>Famous Food</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,6 +82,8 @@
                     String[] locations = irelandData.getLocations();
                     String[] populations = irelandData.getPopulations();
                     String[] landmarks = irelandData.getLandmarks();
+                    String[] foundingYear = irelandData.getFoundingYear();
+                    String[] famousFood = irelandData.getFamousFood();
                     
                     for(int i = 0; i < irelandData.getCityCount(); i++) {
                 %>
@@ -87,6 +91,8 @@
                         <td><%= locations[i] %></td>
                         <td><%= populations[i] %></td>
                         <td><%= landmarks[i] %></td>
+                        <td><%= foundingYear[i] %></td>
+                        <td><%= famousFood[i] %></td>
                     </tr>
                 <%
                     }
