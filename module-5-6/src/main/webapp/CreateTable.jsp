@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<!--
+ Megan Wheeler
+ CSD 430 - Module 5 & 6
+ 18 June 2025
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Create Table Module 5 & 6</title>
+    </head>
+    <body>
+        <h1>JSP Create Table MySQL</h1>
+        
+        <jsp:useBean id='setupDB' class='configBean.ConfigProject' />
+        
+  <br /> <a href="index.jsp">index.jsp</a> <br />   
+  
+  <%
+	  try{
+		  out.print(setupDB.createTable());
+	  }
+	  catch(Exception e){
+		  out.print("Error creating table");
+	  }
+  %>
+    </body>
+</html>
