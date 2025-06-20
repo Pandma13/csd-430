@@ -78,7 +78,7 @@
                 out.print("<table>");
                 out.print("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Publication Year</th></tr></thead>");
                 out.print("<tbody>");
-                out.print(dbBean.read(bookID));
+                out.print(dbBean.read(request.getParameter("bookID")));
                 out.print("</tbody>");
                 out.print("</table>");
 
