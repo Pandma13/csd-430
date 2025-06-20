@@ -61,8 +61,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr><td><a href="CRUD_Read.jsp">Read</a></td></tr>
-            <tr><td><a href="index.jsp">Index</a></td></tr>
+            <tr><td><a href="CRUD_Read.jsp">CRUD Read</a></td></tr>
+            <tr><td><a href="index.jsp">Return toIndex</a></td></tr>
         </tbody>
     </table>
     </div>

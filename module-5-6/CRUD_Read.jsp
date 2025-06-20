@@ -100,29 +100,17 @@
         <%
             if(request.getMethod().equals("POST")){
                 out.print("<div class='content-section'>");
-                out.print("<h3>Search Results</h3>");
+                out.print("<h3>Book Records</h3>");
                 
                 out.print("<div class='form-output'>");
                 out.print("<h4>Search Form</h4>");
                 out.print(dbBean.formGetPK("CRUD_Read.jsp"));
                 out.print("</div>");
 
-                String title = request.getParameter("title");
-                if(title != null && !title.trim().isEmpty()) {
-                    out.print("<div class='form-output'>");
-                    out.print("<h4>Search Results for: " + title + "</h4>");
-                    out.print("<table>");
-                    out.print("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Publication Year</th></tr></thead>");
-                    out.print("<tbody>");
-                    out.print(dbBean.read(title));
-                    out.print("</tbody></table>");
-                    out.print("</div>");
-                }
-
                 out.print("<div class='form-output'>");
                 out.print("<h4>All Book Records</h4>");
                 out.print("<table>");
-                out.print("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>ISBN</th><th>Publication Year</th></tr></thead>");
+                out.print("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Publication Year</th></tr></thead>");
                 out.print("<tbody>");
                 out.print(dbBean.readAll());
                 out.print("</tbody></table>");

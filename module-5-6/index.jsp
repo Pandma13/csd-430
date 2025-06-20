@@ -61,12 +61,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><a href="CreateTable.jsp">Create Table</a></td>
-                <td><a href="PopulateTable.jsp">Populate Table</a></td>
-                <td><a href="SelectTitle.jsp">View All Records</a></td>
-                <td><a href="index_02.jsp">Index 02</a></td>
-            </tr>
+            <tr><td><a href="CreateTable.jsp">Create Table</a></td></tr>
+            <tr><td><a href="PopulateTable.jsp">Populate Table</a></td></tr>
+            <tr><td><a href="SelectTitle.jsp">View All Records</a></td></tr>
+            <tr><td><a href="index_02.jsp">Go to Index 02</a></td></tr>
         </tbody>
     </table>
     </div>
