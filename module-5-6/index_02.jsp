@@ -13,11 +13,9 @@
 </head>
 <body>
     <h1>Library Management System</h1>
-    <h2>Database Setup</h2>
-    <a href="CreateTable.jsp">Create Table</a><br />
-    <a href="PopulateTable.jsp">Populate Table</a><br />
-    <a href="SelectTitle.jsp">View All Records</a><br />
-    <a href="index_02.jsp">Index 02</a><br />
+    <h2>CRUD Operations</h2>
+    <a href="CRUD_Read.jsp">Read</a><br />
+    <a href="index.jsp">Index</a><br />
 
 </body>
 </html>

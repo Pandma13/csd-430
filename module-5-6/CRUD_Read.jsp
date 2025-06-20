@@ -15,18 +15,27 @@
         <h1>Read All Book Records</h1>
         
         <jsp:useBean id='dbBean' class='database.DbBean' />
+
+        <br /><a href="index_02.jsp">Back to Index 02</a> <br />
         
         <%
-            String result = "";
-            try {
-                result = dbBean.readAll();
-            } catch (Exception e) {
-                result = "Error reading records: " + e.getMessage();
+            if(request.getMethod().equals("GET")){
+                String value = dbBean.formGetPK("CRUD_Read.jsp");
+                out.print(value);
+            }
+        %>
+
+        <%
+            if(request.getMethod().equals("POST")){
+                out.print(dbBean.formGetPK("CRUD_Read.jsp"));
+
+                String title = request.getParameter("title");
+                out.print(dbBean.read(title));
+
+                out.println("<br />");
+                out.print(dbBean.readAll());
             }
         %>
         
-        <div><%= result %></div>
-        
-        <br><a href="index.jsp">Back to Index</a>
     </body>
 </html>
