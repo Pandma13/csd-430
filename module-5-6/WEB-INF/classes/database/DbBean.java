@@ -156,8 +156,8 @@ public class DbBean implements java.io.Serializable {
             dataStringBuilder.append("<br /><br />");
         } else {
             dataStringBuilder.append("<label for='pubYear'>Publication Year</label>");
-            dataStringBuilder.append("&nbsp&nbsp");   
-            dataStringBuilder.append("<select name='pubYear' id='pubYear' maxlength='20'>");   
+            dataStringBuilder.append("&nbsp&nbsp");
+            dataStringBuilder.append("<select name='pubYear' id='pubYear' maxlength='20'>");
             
             try (java.sql.Connection conn = getConnection();
                 java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT pubYear FROM wheeler_library_data ORDER BY pubYear ASC");
@@ -189,8 +189,8 @@ public class DbBean implements java.io.Serializable {
         dataStringBuilder.append("<form method='post' action='").append(requestURL).append("'>\n");
         dataStringBuilder.append("<label>Select a Book by ID</label>&nbsp;&nbsp;&nbsp;\n");
         dataStringBuilder.append("<br /> \n");
-        dataStringBuilder.append("<label for=\"title\">Select a Book ID:</label>\n");
-        dataStringBuilder.append("<select name=\"id\" id=\"id\">\n");
+        dataStringBuilder.append("<label for=\"bookID\">Select a Book ID:</label>\n");
+        dataStringBuilder.append("<select name=\"bookID\" id=\"bookID\">\n");
 
         try (java.sql.Connection conn = getConnection();
             java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT bookID FROM wheeler_library_data");
