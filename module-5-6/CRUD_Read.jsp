@@ -48,33 +48,6 @@
     tr:hover {
         background-color: #ddd;
     }
-    .nav-link {
-        display: inline-block;
-        margin: 10px 0;
-        padding: 10px 15px;
-        background-color: #3625f2;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
-    .nav-link:hover {
-        background-color: #2a1dd9;
-    }
-    .content-section {
-        margin: 20px 0;
-        padding: 15px;
-        background-color: #f9f9f9;
-        border-radius: 5px;
-        border-left: 4px solid #3625f2;
-    }
-    .form-output {
-        margin: 15px 0;
-        padding: 10px;
-        background-color: #e8f4f8;
-        border-radius: 5px;
-        border: 1px solid #b3d9e6;
-    }
 </style>
 </head>
 <body>
@@ -83,39 +56,36 @@
         
         <jsp:useBean id='dbBean' class='database.DbBean' />
 
-        <a href="index_02.jsp" class="nav-link">Back to Index 02</a>
+        <a href="index_02.jsp">Back to Index 02</a>
         
         <%
             if(request.getMethod().equals("GET")){
                 String value = dbBean.formGetPK("CRUD_Read.jsp");
-                out.print("<div class='content-section'>");
-                out.print("<h3>Search Form</h3>");
-                out.print("<div class='form-output'>");
+                out.print("<div class='container'>");
+                out.print("<table>");
+                out.print("<thead><tr><th>Search Library</th></tr></thead>");
+                out.print("<tbody><tr><td>");
                 out.print(value);
-                out.print("</div>");
+                out.print("</td></tr></tbody>");
+                out.print("</table>");
                 out.print("</div>");
             }
         %>
 
         <%
             if(request.getMethod().equals("POST")){
-                out.print("<div class='content-section'>");
+                out.print("<div class='container'>");
                 out.print("<h3>Book Records</h3>");
-                
-                out.print("<div class='form-output'>");
-                out.print("<h4>Search Form</h4>");
+                out.print("<h4>Search Library</h4>");
                 out.print(dbBean.formGetPK("CRUD_Read.jsp"));
-                out.print("</div>");
 
-                out.print("<div class='form-output'>");
                 out.print("<h4>All Book Records</h4>");
                 out.print("<table>");
                 out.print("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Publication Year</th></tr></thead>");
-                out.print("<tbody>");
+                out.print("<tbody><tr><td>");
                 out.print(dbBean.readAll());
-                out.print("</tbody></table>");
-                out.print("</div>");
-                
+                out.print("</td></tr></tbody>");
+                out.print("</table>");
                 out.print("</div>");
             }
         %>
