@@ -62,12 +62,8 @@
             if(request.getMethod().equals("GET")){
                 String value = dbBean.formGetPK("CRUD_Read.jsp");
                 out.print("<div class='container'>");
-                out.print("<table>");
-                out.print("<thead><tr><th>Search Library</th></tr></thead>");
-                out.print("<tbody><tr><td>");
+                out.print("<h3>Search Library</h3>");
                 out.print(value);
-                out.print("</td></tr></tbody>");
-                out.print("</table>");
                 out.print("</div>");
             }
         %>
@@ -75,17 +71,23 @@
         <%
             if(request.getMethod().equals("POST")){
                 out.print("<div class='container'>");
-                out.print("<h3>Book Records</h3>");
-                out.print("<h4>Search Library</h4>");
+                out.print("<h3>Search Library</h3>");
                 out.print(dbBean.formGetPK("CRUD_Read.jsp"));
+
+                out.print("<h3>Selected Book Record</h3>");
+                out.print("<table>");
+                out.print("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Publication Year</th></tr></thead>");
+                out.print("<tbody>");
+                out.print(dbBean.read(bookID));
+                out.print("</tbody>");
+                out.print("</table>");
 
                 out.print("<h4>All Book Records</h4>");
                 out.print("<table>");
                 out.print("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Publication Year</th></tr></thead>");
-                out.print("<tbody><tr><td>");
+                out.print("<tbody>");
                 out.print(dbBean.readAll());
-                out.print("</td></tr></tbody>");
-                out.print("</table>");
+                out.print("</tbody></table>");
                 out.print("</div>");
             }
         %>

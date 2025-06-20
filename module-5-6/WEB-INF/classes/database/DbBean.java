@@ -187,10 +187,10 @@ public class DbBean implements java.io.Serializable {
         StringBuilder dataStringBuilder = new StringBuilder();
         
         dataStringBuilder.append("<form method='post' action='").append(requestURL).append("'>\n");
-        dataStringBuilder.append("<label>Enter your favorite Book Title</label>&nbsp;&nbsp;&nbsp;\n");
+        dataStringBuilder.append("<label>Select a Book by ID</label>&nbsp;&nbsp;&nbsp;\n");
         dataStringBuilder.append("<br /> \n");
-        dataStringBuilder.append("<label for=\"title\">Select a Book Title:</label>\n");
-        dataStringBuilder.append("<select name=\"title\" id=\"title\">\n");
+        dataStringBuilder.append("<label for=\"title\">Select a Book ID:</label>\n");
+        dataStringBuilder.append("<select name=\"id\" id=\"id\">\n");
 
         try (java.sql.Connection conn = getConnection();
             java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT bookID FROM wheeler_library_data");
@@ -229,7 +229,7 @@ public class DbBean implements java.io.Serializable {
             stmt.setInt(1, bookID);
             
             try (java.sql.ResultSet resultSet = stmt.executeQuery()) {
-                dataStringBuilder.append("<table border='1' bgcolor='FA8072'>");
+                dataStringBuilder.append("<table border='1'>");
                 while(resultSet.next()) {
                     dataStringBuilder.append("<tr>");
                     for(int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
@@ -285,7 +285,7 @@ public class DbBean implements java.io.Serializable {
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
             java.sql.ResultSet resultSet = stmt.executeQuery()) {
             
-            dataStringBuilder.append("<table border='1' bgcolor='FFFF00'>");
+            dataStringBuilder.append("<table border='1'>");
             
             while(resultSet.next()) {
                 dataStringBuilder.append("<tr>");
