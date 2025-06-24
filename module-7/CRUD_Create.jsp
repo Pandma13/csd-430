@@ -16,6 +16,8 @@
         
         <jsp:useBean id='dbBean' class='database.DbBean' />
 
+        <br><a href="index_02.jsp">Back to Index 02</a>
+
         <%
         if ("GET".equalsIgnoreCase(request.getMethod())) {
             String value = dbBean.formGetCreateOrUpdate("CRUD_Create.jsp");
@@ -74,7 +76,5 @@
             
             <input type="submit" value="Create Record">
         </form>
-        
-        <br><a href="index_02.jsp">Back to Index 02</a>
     </body>
 </html>

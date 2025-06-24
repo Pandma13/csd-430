@@ -57,9 +57,9 @@ SELECT * FROM wheeler_library_data;
 
 SELECT bookID FROM wheeler_library_data;
 
--- Read by ID
+-- Read by Title
 
-SELECT * FROM wheeler_library_data WHERE bookID = 1;
+SELECT * FROM wheeler_library_data WHERE title = ?;
 
 -- Select Title
 

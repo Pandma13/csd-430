@@ -276,15 +276,15 @@ public class DbBean implements java.io.Serializable {
     
     // Read
 
-    public String read(int bookID) {
+    public String read(String title) {
         StringBuilder dataStringBuilder = new StringBuilder();
         
-        String sql = "SELECT * FROM wheeler_library_data WHERE bookID = ?";
+        String sql = "SELECT * FROM wheeler_library_data WHERE title = ?";
         
         try (java.sql.Connection conn = getConnection();
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
             
-            stmt.setInt(1, bookID);
+            stmt.setString(1, title);
             
             try (java.sql.ResultSet resultSet = stmt.executeQuery()) {
                 dataStringBuilder.append("<table border='1'>");
@@ -310,13 +310,13 @@ public class DbBean implements java.io.Serializable {
     
     // Delete
     
-    public String delete(int bookID) {
-        String sql = "DELETE FROM wheeler_library_data WHERE bookID = ?";
+    public String delete(String title) {
+        String sql = "DELETE FROM wheeler_library_data WHERE title = ?";
         
         try (java.sql.Connection conn = getConnection();
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
             
-            stmt.setInt(1, bookID);
+            stmt.setString(1, title);
             
             int rowsAffected = stmt.executeUpdate();
             
