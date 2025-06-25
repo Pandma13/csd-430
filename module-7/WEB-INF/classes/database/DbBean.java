@@ -234,8 +234,8 @@ public class DbBean implements java.io.Serializable {
         dataStringBuilder.append("<form method='post' action='").append(requestURL).append("'>\n");
         dataStringBuilder.append("<label>Select a Book by Title</label>&nbsp;&nbsp;&nbsp;\n");
         dataStringBuilder.append("<br /> \n");
-        dataStringBuilder.append("<label for=\"title\">Select a Book Title:</label>\n");
-        dataStringBuilder.append("<select name=\"title\" id=\"title\">\n");
+        dataStringBuilder.append("<label for=\"bookID\">Select a Book Title:</label>\n");
+        dataStringBuilder.append("<select name=\"bookID\" id=\"bookID\">\n");
 
         try (java.sql.Connection conn = getConnection();
             java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT bookID, title FROM wheeler_library_data ORDER BY title ASC");
@@ -261,31 +261,44 @@ public class DbBean implements java.io.Serializable {
 
     // Read
 
-    public String read(String title) {
+    public String read(String bookID) {
         StringBuilder dataStringBuilder = new StringBuilder();
         
-        String sql = "SELECT * FROM wheeler_library_data WHERE title = ?";
+        // Check if bookID is null or empty
+        if (bookID == null || bookID.trim().isEmpty()) {
+            return "<p>No book ID provided for search.</p>";
+        }
+        
+        String sql = "SELECT * FROM wheeler_library_data WHERE bookID = ?";
         
         try (java.sql.Connection conn = getConnection();
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
             
-            stmt.setString(1, title);
+            stmt.setString(1, bookID);
             
             try (java.sql.ResultSet resultSet = stmt.executeQuery()) {
                 dataStringBuilder.append("<table border='1' class='table'>");
                 dataStringBuilder.append("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Publication Year</th><th>Page Count</th><th>ISBN</th></tr></thead>");
                 dataStringBuilder.append("<tbody>");
 
+                boolean found = false;
                 while(resultSet.next()) {
+                    found = true;
                     dataStringBuilder.append("<tr>");
                     
                     for(int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
                         dataStringBuilder.append("<td>");
-                        dataStringBuilder.append(resultSet.getString(i).trim());
+                        String value = resultSet.getString(i);
+                        dataStringBuilder.append(value != null ? value.trim() : "");
                         dataStringBuilder.append("</td>");
                     }
                     dataStringBuilder.append("</tr>");
                 }
+                
+                if (!found) {
+                    dataStringBuilder.append("<tr><td colspan='7'>No book found with ID: ").append(bookID).append("</td></tr>");
+                }
+                
                 dataStringBuilder.append("</tbody>");
                 dataStringBuilder.append("</table>");
             }

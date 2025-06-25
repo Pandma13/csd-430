@@ -37,8 +37,16 @@
             out.print(dbBean.formGetPK("CRUD_Read.jsp"));
 
             out.print("<h3>Selected Book Record</h3>");
-            String title = request.getParameter("title");
-            out.print(dbBean.read(title));
+            String bookID = request.getParameter("bookID");
+            
+            // Debug information
+            out.print("<p><strong>Debug:</strong> Received bookID parameter: '" + (bookID != null ? bookID : "null") + "'</p>");
+            
+            if (bookID != null && !bookID.trim().isEmpty()) {
+                out.print(dbBean.read(bookID));
+            } else {
+                out.print("<p>Please select a book from the dropdown above.</p>");
+            }
 
             out.print("<h3>All Book Records</h3>");
             out.print(dbBean.readAll());
