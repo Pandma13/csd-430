@@ -233,7 +233,7 @@ public class DbBean implements java.io.Serializable {
         }
 
         // Close Form
-        dataStringBuilder.append("<input type='submit' value='Submit'>");
+        dataStringBuilder.append("<input type='submit' value='Create Record'>");
         dataStringBuilder.append("</form>");
 
         return dataStringBuilder.toString();

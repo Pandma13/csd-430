@@ -55,26 +55,5 @@
         
         <div style="color: green;"><%= result %></div>
         
-        <form method="post">
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title" required><br><br>
-            
-            <label for="author">Author:</label><br>
-            <input type="text" id="author" name="author" required><br><br>
-            
-            <label for="genre">Genre:</label><br>
-            <input type="text" id="genre" name="genre" required><br><br>
-            
-            <label for="pubYear">Publication Year:</label><br>
-            <input type="number" id="pubYear" name="pubYear" min="1800" max="2025" required><br><br>
-
-            <label for="pageCount">Page Count:</label><br>
-            <input type="number" id="pageCount" name="pageCount" min="1" required><br><br>
-
-            <label for="ISBN">ISBN:</label><br>
-            <input type="text" id="ISBN" name="ISBN" required><br><br>
-            
-            <input type="submit" value="Create Record">
-        </form>
     </body>
 </html>
