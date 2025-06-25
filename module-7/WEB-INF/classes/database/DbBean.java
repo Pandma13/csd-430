@@ -2,8 +2,8 @@ package database;
 
 /*
 * Megan Wheeler
-* CSD 430 - Module 5 & 6
-* 18 June 2025
+* CSD 430 - Module 7
+* 24 June 2025
 */
 
 public class DbBean implements java.io.Serializable {
@@ -51,9 +51,9 @@ public class DbBean implements java.io.Serializable {
             return "Error updating record: " + e.getMessage();
         }
     }
-    
+
     // Create Record
-    
+
     public String createRecord(String title, String author, String genre, int pubYear, int pageCount, String ISBN) {
         String sql = "INSERT INTO wheeler_library_data(title, author, genre, pubYear, pageCount, ISBN) VALUES(?, ?, ?, ?, ?, ?)";
         
@@ -80,9 +80,9 @@ public class DbBean implements java.io.Serializable {
             return "Error creating record: " + e.getMessage();
         }
     }
-    
+
     // Form Get, Create, or Update
-    
+
     public String formGetCreateOrUpdate(String requestURL) {
         StringBuilder dataStringBuilder = new StringBuilder();
         
@@ -238,7 +238,7 @@ public class DbBean implements java.io.Serializable {
 
         return dataStringBuilder.toString();
     }
-    
+
     // Form Get PK
 
     public String formGetPK(String requestURL) {
@@ -273,7 +273,7 @@ public class DbBean implements java.io.Serializable {
         
         return dataStringBuilder.toString();
     }
-    
+
     // Read
 
     public String read(String title) {
@@ -307,9 +307,9 @@ public class DbBean implements java.io.Serializable {
         
         return dataStringBuilder.toString();
     }
-    
+
     // Delete
-    
+
     public String delete(String title) {
         String sql = "DELETE FROM wheeler_library_data WHERE title = ?";
         
@@ -333,7 +333,7 @@ public class DbBean implements java.io.Serializable {
     }
 
     // Read All
-    
+
     public String readAll() {
         StringBuilder dataStringBuilder = new StringBuilder();
         
@@ -366,6 +366,7 @@ public class DbBean implements java.io.Serializable {
     }
 
     // Centralized connection method
+
     private java.sql.Connection getConnection() throws java.sql.SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
