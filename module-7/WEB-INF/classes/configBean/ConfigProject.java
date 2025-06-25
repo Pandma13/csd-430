@@ -134,7 +134,9 @@ public class ConfigProject implements java.io.Serializable {
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
             java.sql.ResultSet resultSet = stmt.executeQuery()) {
             
-            dataStringBuilder.append("<table border='1' bgcolor='FA8072'>");
+            dataStringBuilder.append("<table border='1' class='table'>");
+            dataStringBuilder.append("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Publication Year</th><th>Page Count</th><th>ISBN</th></tr></thead>");
+            dataStringBuilder.append("<tbody>");
             
             while(resultSet.next()) {
                 dataStringBuilder.append("<tr>");
@@ -144,10 +146,9 @@ public class ConfigProject implements java.io.Serializable {
                     dataStringBuilder.append(resultSet.getString(i).trim());
                     dataStringBuilder.append("</td>");
                 }
-                
                 dataStringBuilder.append("</tr>");
             }
-            
+            dataStringBuilder.append("</tbody>");
             dataStringBuilder.append("</table>");
             
         } catch(java.sql.SQLException e) {

@@ -271,11 +271,13 @@ public class DbBean implements java.io.Serializable {
             stmt.setString(1, title);
             
             try (java.sql.ResultSet resultSet = stmt.executeQuery()) {
-                dataStringBuilder.append("<table border='1'>");
+                dataStringBuilder.append("<table border='1' class='table'>");
                 dataStringBuilder.append("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Publication Year</th><th>Page Count</th><th>ISBN</th></tr></thead>");
                 dataStringBuilder.append("<tbody>");
+
                 while(resultSet.next()) {
                     dataStringBuilder.append("<tr>");
+                    
                     for(int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
                         dataStringBuilder.append("<td>");
                         dataStringBuilder.append(resultSet.getString(i).trim());

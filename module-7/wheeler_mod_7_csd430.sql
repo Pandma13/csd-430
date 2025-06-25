@@ -84,3 +84,7 @@ SELECT DISTINCT pageCount FROM wheeler_library_data ORDER BY pageCount ASC;
 -- Select ISBN
 
 SELECT DISTINCT ISBN FROM wheeler_library_data ORDER BY ISBN ASC;
+
+-- Create Record
+
+INSERT INTO wheeler_library_data(title, author, genre, pubYear, pageCount, ISBN) VALUES(?, ?, ?, ?, ?, ?);
