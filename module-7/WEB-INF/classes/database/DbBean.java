@@ -56,7 +56,7 @@ public class DbBean implements java.io.Serializable {
 
     public String createRecord(String title, String author, String genre, int pubYear, int pageCount, String ISBN) {
         String sql = "INSERT INTO wheeler_library_data(title, author, genre, pubYear, pageCount, ISBN) VALUES(?, ?, ?, ?, ?, ?)";
-        
+
         try (java.sql.Connection conn = getConnection();
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
             
@@ -67,14 +67,17 @@ public class DbBean implements java.io.Serializable {
             stmt.setInt(5, pageCount);
             stmt.setString(6, ISBN);
             
+            // Print the SQL statement
+            System.out.println(stmt);
+
             int rowsAffected = stmt.executeUpdate();
             
             if (rowsAffected > 0) {
+                System.out.println("Record created successfully");
                 return "Record created successfully";
             } else {
                 return "Failed to create record";
             }
-            
         } catch(java.sql.SQLException e) {
             System.err.println("SQL Exception: " + e.getMessage());
             return "Error creating record: " + e.getMessage();
