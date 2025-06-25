@@ -235,17 +235,15 @@ public class DbBean implements java.io.Serializable {
         dataStringBuilder.append("<select name=\"title\" id=\"title\">\n");
 
         try (java.sql.Connection conn = getConnection();
-            java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT bookID FROM wheeler_library_data WHERE title = ?");
+            java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT bookID, title FROM wheeler_library_data ORDER BY title ASC");
             java.sql.ResultSet resultSet = stmt.executeQuery()) {
             
             while(resultSet.next()) {
-                for(int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
-                    dataStringBuilder.append("<option value=\"");
-                    dataStringBuilder.append(resultSet.getString(i));
-                    dataStringBuilder.append("\">\n");
-                    dataStringBuilder.append(resultSet.getString(i));
-                    dataStringBuilder.append("</option>");
-                }
+                dataStringBuilder.append("<option value=\"");
+                dataStringBuilder.append(resultSet.getString("bookID"));
+                dataStringBuilder.append("\">");
+                dataStringBuilder.append(resultSet.getString("title"));
+                dataStringBuilder.append("</option>");
             }
         } catch(java.sql.SQLException e) {
             System.err.println("SQL Exception: " + e.getMessage());
