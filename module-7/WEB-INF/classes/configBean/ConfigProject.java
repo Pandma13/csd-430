@@ -50,9 +50,9 @@ public class ConfigProject implements java.io.Serializable {
             
             String createTableSQL = "CREATE TABLE " + TABLE_NAME + " (" +
                 "BookID int NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-                "Title varchar(255), " +
-                "Author varchar(255), " +
-                "Genre varchar(255), " +
+                "Title varchar(255) NOT NULL, " +
+                "Author varchar(255) NOT NULL, " +
+                "Genre varchar(255) NOT NULL, " +
                 "PublicationYear int NOT NULL, " +
                 "PageCount int NOT NULL, " +
                 "ISBN varchar(13) NOT NULL" +
@@ -158,7 +158,7 @@ public class ConfigProject implements java.io.Serializable {
         return dataStringBuilder.toString();
     }
 
-    // Centralized connection method
+    // Database Connection
     private java.sql.Connection getConnection() throws java.sql.SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

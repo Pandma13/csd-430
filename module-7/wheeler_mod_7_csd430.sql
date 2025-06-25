@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS wheeler_library_data;
 -- Create Table
 
 CREATE TABLE wheeler_library_data (
-    bookID INT AUTO_INCREMENT PRIMARY KEY,
+    bookID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
     genre VARCHAR(255) NOT NULL,
@@ -55,11 +55,11 @@ SELECT * FROM wheeler_library_data;
 
 -- Form Get PK
 
-SELECT bookID FROM wheeler_library_data;
+SELECT title FROM wheeler_library_data;
 
 -- Read by Title
 
-SELECT * FROM wheeler_library_data WHERE title = ?;
+SELECT bookID FROM wheeler_library_data WHERE title = ?;
 
 -- Select Title
 

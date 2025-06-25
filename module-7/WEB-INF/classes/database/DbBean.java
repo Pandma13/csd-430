@@ -86,13 +86,13 @@ public class DbBean implements java.io.Serializable {
     public String formGetCreateOrUpdate(String requestURL) {
         StringBuilder dataStringBuilder = new StringBuilder();
         
-        dataStringBuilder.append("<form method='post' action='").append(requestURL).append("'>");
+        dataStringBuilder.append("<form method='post' action='").append(requestURL).append("'>\n");
         dataStringBuilder.append("<br /><br />");
 
-        // Title dropdown
-        dataStringBuilder.append("<label for='title'>Title</label>");
-        dataStringBuilder.append("&nbsp&nbsp");
-        dataStringBuilder.append("<input name='title' list='title'>");
+        // Title Dropdown
+        dataStringBuilder.append("<label for='title'>Title</label>\n");
+        dataStringBuilder.append("&nbsp&nbsp \n");
+        dataStringBuilder.append("<input name='title' list='title'>\n");
         dataStringBuilder.append("<datalist id='title'>\n");
         
         try (java.sql.Connection conn = getConnection();
@@ -106,14 +106,14 @@ public class DbBean implements java.io.Serializable {
             System.err.println("SQL Exception: " + e.getMessage());
         }
         
-        dataStringBuilder.append("</datalist>");
-        dataStringBuilder.append("</input>");
-        dataStringBuilder.append("<br /><br />");
+        dataStringBuilder.append("</datalist>\n");
+        dataStringBuilder.append("</input>\n");
+        dataStringBuilder.append("<br /><br />\n");
 
-        // Author dropdown
-        dataStringBuilder.append("<label for='author'>Author</label>");
-        dataStringBuilder.append("&nbsp&nbsp");
-        dataStringBuilder.append("<input name='author' list='author'>");
+        // Author Dropdown
+        dataStringBuilder.append("<label for='author'>Author</label>\n");
+        dataStringBuilder.append("&nbsp&nbsp \n");
+        dataStringBuilder.append("<input name='author' list='author'>\n");
         dataStringBuilder.append("<datalist id='author'>\n");
         
         try (java.sql.Connection conn = getConnection();
@@ -127,14 +127,14 @@ public class DbBean implements java.io.Serializable {
             System.err.println("SQL Exception: " + e.getMessage());
         }
         
-        dataStringBuilder.append("</datalist>");
-        dataStringBuilder.append("</input>");
-        dataStringBuilder.append("<br /><br />");
+        dataStringBuilder.append("</datalist>\n");
+        dataStringBuilder.append("</input>\n");
+        dataStringBuilder.append("<br /><br />\n");
 
-        // Genre dropdown
-        dataStringBuilder.append("<label for='genre'>Genre</label>");
-        dataStringBuilder.append("&nbsp&nbsp");
-        dataStringBuilder.append("<input name='genre' list='genre'>");
+        // Genre Dropdown
+        dataStringBuilder.append("<label for='genre'>Genre</label>\n");
+        dataStringBuilder.append("&nbsp&nbsp\n");
+        dataStringBuilder.append("<input name='genre' list='genre'>\n");
         dataStringBuilder.append("<datalist id='genre'>\n");
         
         try (java.sql.Connection conn = getConnection();
@@ -148,93 +148,77 @@ public class DbBean implements java.io.Serializable {
             System.err.println("SQL Exception: " + e.getMessage());
         }
 
-        dataStringBuilder.append("</datalist>");
-        dataStringBuilder.append("</input>");
-        dataStringBuilder.append("<br /><br />");
+        dataStringBuilder.append("</datalist>\n");
+        dataStringBuilder.append("</input>\n");
+        dataStringBuilder.append("<br /><br />\n");
 
-        // Publication Year
-        if (requestURL.equals("CRUD_Create.jsp")) {
-            dataStringBuilder.append("<label for='pubYear'>Publication Year</label>");
-            dataStringBuilder.append("&nbsp&nbsp");
-            dataStringBuilder.append("<input type='text' name='pubYear' maxlength='20'>");
-            dataStringBuilder.append("<br /><br />");
-        } else {
-            dataStringBuilder.append("<label for='pubYear'>Publication Year</label>");
-            dataStringBuilder.append("&nbsp&nbsp");
-            dataStringBuilder.append("<select name='pubYear' id='pubYear' maxlength='20'>");
+        // Publication Year Dropdown
+        dataStringBuilder.append("<label for='pubYear'>Publication Year</label>\n");
+        dataStringBuilder.append("&nbsp&nbsp\n");
+        dataStringBuilder.append("<input type='text' name='pubYear' maxlength='20'>\n");
+        dataStringBuilder.append("<datalist id='pubYear'>\n");
+        
+        try (java.sql.Connection conn = getConnection();
+            java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT pubYear FROM wheeler_library_data ORDER BY pubYear ASC");
+            java.sql.ResultSet resultSet = stmt.executeQuery()) {
             
-            try (java.sql.Connection conn = getConnection();
-                java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT pubYear FROM wheeler_library_data ORDER BY pubYear ASC");
-                java.sql.ResultSet resultSet = stmt.executeQuery()) {
-                
-                while(resultSet.next()) {
-                    dataStringBuilder.append("<option value='").append(resultSet.getString(1)).append("'>").append(resultSet.getString(1)).append("</option>");
-                }
-            } catch(java.sql.SQLException e) {
-                System.err.println("SQL Exception: " + e.getMessage());
+            while(resultSet.next()) {
+                dataStringBuilder.append("<option value='").append(resultSet.getString(1)).append("'>").append(resultSet.getString(1)).append("</option>\n");
             }
-
-            dataStringBuilder.append("</select>");
-            dataStringBuilder.append("<br /><br />");
+        } catch(java.sql.SQLException e) {
+            System.err.println("SQL Exception: " + e.getMessage());
         }
 
-        // Page Count
-        if (requestURL.equals("CRUD_Create.jsp")) {
-            dataStringBuilder.append("<label for='pageCount'>Page Count</label>");
-            dataStringBuilder.append("&nbsp&nbsp");
-            dataStringBuilder.append("<input type='text' name='pageCount' maxlength='20'>");
-            dataStringBuilder.append("<br /><br />");
-        } else {
-            dataStringBuilder.append("<label for='pageCount'>Page Count</label>");
-            dataStringBuilder.append("&nbsp&nbsp");
-            dataStringBuilder.append("<input type='text' name='pageCount' maxlength='20'>");
-            dataStringBuilder.append("<br /><br />");
+        dataStringBuilder.append("</datalist>\n");
+        dataStringBuilder.append("</input>\n");
+        dataStringBuilder.append("<br /><br />\n");
 
-            try (java.sql.Connection conn = getConnection();
-                java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT pageCount FROM wheeler_library_data ORDER BY pageCount ASC");
-                java.sql.ResultSet resultSet = stmt.executeQuery()) {
-                
-                while(resultSet.next()) {
-                    dataStringBuilder.append("<option value='").append(resultSet.getString(1)).append("'>").append(resultSet.getString(1)).append("</option>");
-                }
-            } catch(java.sql.SQLException e) {
-                System.err.println("SQL Exception: " + e.getMessage());
+
+        // Page Count Dropdown
+        dataStringBuilder.append("<label for='pageCount'>Page Count</label>\n");
+        dataStringBuilder.append("&nbsp&nbsp\n");
+        dataStringBuilder.append("<input type='text' name='pageCount' maxlength='10'>\n");
+        dataStringBuilder.append("<datalist id='pageCount'>\n");
+
+        try (java.sql.Connection conn = getConnection();
+            java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT pageCount FROM wheeler_library_data ORDER BY pageCount ASC");
+            java.sql.ResultSet resultSet = stmt.executeQuery()) {
+            
+            while(resultSet.next()) {
+                dataStringBuilder.append("<option value='").append(resultSet.getString(1)).append("'>").append(resultSet.getString(1)).append("</option>\n");
             }
-
-            dataStringBuilder.append("</select>");
-            dataStringBuilder.append("<br /><br />");
+        } catch(java.sql.SQLException e) {
+            System.err.println("SQL Exception: " + e.getMessage());
         }
 
-        // ISBN
-        if (requestURL.equals("CRUD_Create.jsp")) {
-            dataStringBuilder.append("<label for='ISBN'>ISBN</label>");
-            dataStringBuilder.append("&nbsp&nbsp");
-            dataStringBuilder.append("<input type='text' name='ISBN' maxlength='13'>");
-            dataStringBuilder.append("<br /><br />");
-        } else {
-            dataStringBuilder.append("<label for='ISBN'>ISBN</label>");
-            dataStringBuilder.append("&nbsp&nbsp");
-            dataStringBuilder.append("<input type='text' name='ISBN' maxlength='13'>");
-            dataStringBuilder.append("<br /><br />");
+        dataStringBuilder.append("</datalist>\n");
+        dataStringBuilder.append("</input>\n");
+        dataStringBuilder.append("<br /><br />\n");
 
-            try (java.sql.Connection conn = getConnection();
-                java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT ISBN FROM wheeler_library_data ORDER BY ISBN ASC");
-                java.sql.ResultSet resultSet = stmt.executeQuery()) {
-                
-                while(resultSet.next()) {
-                    dataStringBuilder.append("<option value='").append(resultSet.getString(1)).append("'>").append(resultSet.getString(1)).append("</option>");
-                }
-            } catch(java.sql.SQLException e) {
-                System.err.println("SQL Exception: " + e.getMessage());
+        // ISBN Dropdown
+        dataStringBuilder.append("<label for='ISBN'>ISBN</label>\n");
+        dataStringBuilder.append("&nbsp&nbsp\n");
+        dataStringBuilder.append("<input type='text' name='ISBN' maxlength='13'>\n");
+        dataStringBuilder.append("<datalist id='ISBN'>\n");
+
+        try (java.sql.Connection conn = getConnection();
+            java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT ISBN FROM wheeler_library_data ORDER BY ISBN ASC");
+            java.sql.ResultSet resultSet = stmt.executeQuery()) {
+            
+            while(resultSet.next()) {
+                dataStringBuilder.append("<option value='").append(resultSet.getString(1)).append("'>").append(resultSet.getString(1)).append("</option>\n");
             }
-
-            dataStringBuilder.append("</select>");
-            dataStringBuilder.append("<br /><br />");
+        } catch(java.sql.SQLException e) {
+            System.err.println("SQL Exception: " + e.getMessage());
         }
+
+        dataStringBuilder.append("</datalist>\n");
+        dataStringBuilder.append("</input>\n");
+        dataStringBuilder.append("<br /><br />\n");
 
         // Close Form
-        dataStringBuilder.append("<input type='submit' value='Create Record'>");
-        dataStringBuilder.append("</form>");
+        dataStringBuilder.append("<input type='submit' value='Create Record'>\n");
+        dataStringBuilder.append("</form>\n");
 
         return dataStringBuilder.toString();
     }
@@ -245,13 +229,13 @@ public class DbBean implements java.io.Serializable {
         StringBuilder dataStringBuilder = new StringBuilder();
         
         dataStringBuilder.append("<form method='post' action='").append(requestURL).append("'>\n");
-        dataStringBuilder.append("<label>Select a Book by ID</label>&nbsp;&nbsp;&nbsp;\n");
+        dataStringBuilder.append("<label>Select a Book by Title</label>&nbsp;&nbsp;&nbsp;\n");
         dataStringBuilder.append("<br /> \n");
-        dataStringBuilder.append("<label for=\"bookID\">Select a Book ID:</label>\n");
-        dataStringBuilder.append("<select name=\"bookID\" id=\"bookID\">\n");
+        dataStringBuilder.append("<label for=\"title\">Select a Book Title:</label>\n");
+        dataStringBuilder.append("<select name=\"title\" id=\"title\">\n");
 
         try (java.sql.Connection conn = getConnection();
-            java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT bookID FROM wheeler_library_data");
+            java.sql.PreparedStatement stmt = conn.prepareStatement("SELECT bookID FROM wheeler_library_data WHERE title = ?");
             java.sql.ResultSet resultSet = stmt.executeQuery()) {
             
             while(resultSet.next()) {
@@ -288,6 +272,8 @@ public class DbBean implements java.io.Serializable {
             
             try (java.sql.ResultSet resultSet = stmt.executeQuery()) {
                 dataStringBuilder.append("<table border='1'>");
+                dataStringBuilder.append("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Publication Year</th><th>Page Count</th><th>ISBN</th></tr></thead>");
+                dataStringBuilder.append("<tbody>");
                 while(resultSet.next()) {
                     dataStringBuilder.append("<tr>");
                     for(int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
@@ -297,6 +283,7 @@ public class DbBean implements java.io.Serializable {
                     }
                     dataStringBuilder.append("</tr>");
                 }
+                dataStringBuilder.append("</tbody>");
                 dataStringBuilder.append("</table>");
             }
             
@@ -344,7 +331,9 @@ public class DbBean implements java.io.Serializable {
             java.sql.ResultSet resultSet = stmt.executeQuery()) {
             
             dataStringBuilder.append("<table border='1'>");
-            
+            dataStringBuilder.append("<thead><tr><th>Book ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Publication Year</th><th>Page Count</th><th>ISBN</th></tr></thead>");
+            dataStringBuilder.append("<tbody>");
+
             while(resultSet.next()) {
                 dataStringBuilder.append("<tr>");
                 for(int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
@@ -354,7 +343,7 @@ public class DbBean implements java.io.Serializable {
                 }
                 dataStringBuilder.append("</tr>");
             }
-            
+            dataStringBuilder.append("</tbody>");
             dataStringBuilder.append("</table>");
             
         } catch(java.sql.SQLException e) {
@@ -365,7 +354,7 @@ public class DbBean implements java.io.Serializable {
         return dataStringBuilder.toString();
     }
 
-    // Centralized connection method
+    // Database Connection
 
     private java.sql.Connection getConnection() throws java.sql.SQLException {
         try {
