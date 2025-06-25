@@ -39,8 +39,8 @@
             out.print("<h3>Selected Book Record</h3>");
             String bookID = request.getParameter("bookID");
             
-            // Debug information
-            out.print("<p><strong>Debug:</strong> Received bookID parameter: '" + (bookID != null ? bookID : "null") + "'</p>");
+            <!-- // Debug information
+            out.print("<p><strong>Debug:</strong> Received bookID parameter: '" + (bookID != null ? bookID : "null") + "'</p>"); -->
             
             if (bookID != null && !bookID.trim().isEmpty()) {
                 out.print(dbBean.read(bookID));

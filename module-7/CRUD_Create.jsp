@@ -48,14 +48,29 @@
             } catch (NumberFormatException e) {
                 result = "Error: Invalid publication year or page count";
             }
+        } else {
+            result = "Error: All fields are required";
         }
 
         out.print("<div class='container'>");
         out.print("<h3>Create New Book Record</h3>");
         out.print(dbBean.formGetCreateOrUpdate("CRUD_Create.jsp"));
 
-        out.print("<h3>New Book Record</h3>");
-        out.print(dbBean.read(result));
+        out.print("<h3>Result</h3>");
+        out.print("<p>" + result + "</p>");
+
+        // Try to display the newly created record if we got a bookID back
+        if (result != null && !result.startsWith("Error") && !result.startsWith("Failed")) {
+            try {
+                int bookID = Integer.parseInt(result);
+                out.print("<h3>Newly Created Book Record</h3>");
+                out.print(dbBean.read(result));
+            } catch (NumberFormatException e) {
+                // If result is not a number, it's probably a success message
+                out.print("<h3>Newly Created Book Record</h3>");
+                out.print("<p>Record was created successfully. Please check the 'All Book Records' section below to see the new record.</p>");
+            }
+        }
 
         out.print("<h3>All Book Records</h3>");
         out.print(dbBean.readAll());
