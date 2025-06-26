@@ -3,7 +3,11 @@ Megan Wheeler
 CSD 430 - Module 7
 24 June 2025
 */
-
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f0f0f0;
+}
 .container {
     max-width: 800px;
     margin: 0 auto;
