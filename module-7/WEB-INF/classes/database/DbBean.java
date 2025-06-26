@@ -25,7 +25,7 @@ public class DbBean implements java.io.Serializable {
     // Update Record
 
     public String updateRecord(String title, String author, String genre, int pubYear, int pageCount, String ISBN, int bookID) {
-        String sql = "UPDATE wheeler_library_data SET title = ?, author = ?, genre = ?, pubYear = ?, pageCount = ?, ISBN = ? WHERE bookID = ?";
+        String sql = "UPDATE wheeler_library_data SET title = ?, author = ?, genre = ?, publicationYear = ?, pageCount = ?, ISBN = ? WHERE bookID = ?";
         
         try (java.sql.Connection conn = getConnection();
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -55,7 +55,7 @@ public class DbBean implements java.io.Serializable {
     // Create Record
 
     public String createRecord(String title, String author, String genre, int pubYear, int pageCount, String ISBN) {
-        String sql = "INSERT INTO wheeler_library_data(title, author, genre, pubYear, pageCount, ISBN) VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO wheeler_library_data(title, author, genre, publicationYear, pageCount, ISBN) VALUES(?, ?, ?, ?, ?, ?)";
 
         try (java.sql.Connection conn = getConnection();
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS)) {
