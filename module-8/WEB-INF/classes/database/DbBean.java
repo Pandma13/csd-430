@@ -25,7 +25,7 @@ public class DbBean implements java.io.Serializable {
     // Update Record
 
     public String updateRecord(String title, String author, String genre, int pubYear, String ISBN) {
-        String sql = "UPDATE wheeler_library_data SET title = ?, author = ?, genre = ?, publicationYear = ?, ISBN = ? WHERE ISBN = ?";
+        String sql = "UPDATE wheeler_library_data SET title = ?, author = ?, genre = ?, publicationYear = ?, WHERE ISBN = ?";
         
         try (java.sql.Connection conn = getConnection();
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -34,6 +34,7 @@ public class DbBean implements java.io.Serializable {
             stmt.setString(2, author);
             stmt.setString(3, genre);
             stmt.setInt(4, pubYear);
+            
             stmt.setString(5, ISBN);
 
             int rowsAffected = stmt.executeUpdate();

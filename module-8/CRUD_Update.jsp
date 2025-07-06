@@ -44,7 +44,7 @@
                 int pubYear = Integer.parseInt(pubYearStr);
                 result = dbBean.updateRecord(title, author, genre, pubYear, ISBN);
             } catch (NumberFormatException e) {
-                result = "Error: Invalid number format";
+                result = "Error: Invalid publication year or ISBN";
             }
         } else {
             result = "Error: All fields are required";
