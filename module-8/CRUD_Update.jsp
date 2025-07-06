@@ -22,9 +22,9 @@
 
     <%
     if ("GET".equalsIgnoreCase(request.getMethod())) {
-        String value = dbBean.formGetCreateOrUpdate("CRUD_Update.jsp");
+        String value = dbBean.formGetUpdate("CRUD_Update.jsp");
         out.print("<div class='container'>");
-        out.print("<h3>Update Book Record</h3>");
+        out.print("<h3>Select Book to Update</h3>");
         out.print(value);
         out.print("</div>");
     }
@@ -39,40 +39,42 @@
         String pubYearStr = request.getParameter("pubYear");
         String ISBN = request.getParameter("ISBN");
         
-        if (title != null && author != null && genre != null && pubYearStr != null && ISBN != null) {
+        // Check if this is the first POST (selecting a book) or the second POST (updating the book)
+        if (title == null && author == null && genre == null && pubYearStr == null && ISBN != null) {
+            // First POST - user selected a book to update
+            out.print("<div class='container'>");
+            out.print("<h3>Update Book Record</h3>");
+            out.print(dbBean.formUpdateWithData("CRUD_Update.jsp", ISBN));
+            out.print("</div>");
+        } else if (title != null && author != null && genre != null && pubYearStr != null && ISBN != null) {
+            // Second POST - user submitted the update form
             try {
                 int pubYear = Integer.parseInt(pubYearStr);
                 result = dbBean.updateRecord(title, author, genre, pubYear, ISBN);
             } catch (NumberFormatException e) {
-                result = "Error: Invalid publication year or ISBN";
+                result = "Error: Invalid publication year";
             }
+
+            out.print("<div class='container'>");
+            out.print("<h3>Update Result</h3>");
+            out.print("<p>" + result + "</p>");
+            
+            // Display the updated record if update was successful
+            if (result != null && !result.startsWith("Error") && !result.startsWith("No record found")) {
+                out.print("<h3>Updated Book Record</h3>");
+                out.print(dbBean.readByISBN(result));
+            }
+
+            out.print("<h3>All Book Records</h3>");
+            out.print(dbBean.readAll());
+            out.print("</div>");
         } else {
-            result = "Error: All fields are required";
+            out.print("<div class='container'>");
+            out.print("<h3>Error</h3>");
+            out.print("<p>Invalid form data. Please try again.</p>");
+            out.print(dbBean.formGetUpdate("CRUD_Update.jsp"));
+            out.print("</div>");
         }
-
-        out.print("<div class='container'>");
-        out.print("<h3>Update Book Record</h3>");
-        out.print(dbBean.formGetCreateOrUpdate("CRUD_Update.jsp"));
-
-        out.print("<h3>Result</h3>");
-        out.print("<p>" + result + "</p>");
-        
-        // Try to display the updated record if we got a bookID back
-        if (result != null && !result.startsWith("Error") && !result.startsWith("Failed")) {
-            try {
-                int bookID = Integer.parseInt(result);
-                out.print("<h3>Updated Book Record</h3>");
-                out.print(dbBean.read(result));
-            } catch (NumberFormatException e) {
-                // If result is not a number, it's probably a success message
-                out.print("<h3>Updated Book Record</h3>");
-                out.print("<p>Record was updated successfully.</p>");
-            }
-        }
-
-        out.print("<h3>All Book Records</h3>");
-        out.print(dbBean.readAll());
-        out.print("</div>");
     }
     %>
 
