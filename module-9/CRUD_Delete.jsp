@@ -53,7 +53,7 @@
         }
 
         out.print("<div class='container'>");
-        out.print("<h3>Delete Book Record</h3>");
+        out.print("<h3>Delete Another Book Record</h3>");
         out.print(dbBean.formGetPK("CRUD_Delete.jsp"));
 
         
