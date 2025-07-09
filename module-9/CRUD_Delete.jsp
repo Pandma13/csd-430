@@ -36,7 +36,13 @@
         
         if (bookIDStr != null) {
             try {
-                result = dbBean.delete(bookIDStr);
+                String bookID = bookIDStr.trim();
+                String bookRecord = dbBean.read(bookID);
+                result = dbBean.delete(bookID);
+
+                if (bookRecord != null) {
+                    result = bookRecord;
+                }
             } catch (NumberFormatException e) {
                 result = "Error: Invalid Book ID format";
             }
@@ -49,8 +55,8 @@
         out.print(dbBean.formGetPK("CRUD_Delete.jsp"));
 
         
-        out.print("<h3>Delete Result</h3>");
-        out.print("<p>" + result + "</p>");
+        out.print("<h3>Result</h3>");
+        out.print(bookRecord);
 
         out.print("<h3>All Book Records</h3>");
         out.print(dbBean.readAll());
