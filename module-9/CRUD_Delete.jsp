@@ -31,17 +31,18 @@
 
     <%
     String result = "";
+    String bookRecord = "";
     if ("POST".equalsIgnoreCase(request.getMethod())) {
         String bookIDStr = request.getParameter("bookID");
         
         if (bookIDStr != null) {
             try {
                 String bookID = bookIDStr.trim();
-                String bookRecord = dbBean.read(bookID);
+                bookRecord = dbBean.read(bookID);
                 result = dbBean.delete(bookID);
 
-                if (bookRecord != null) {
-                    result = bookRecord;
+                if (bookRecord == null) {
+                    result = "Error: Book record not found";
                 }
             } catch (NumberFormatException e) {
                 result = "Error: Invalid Book ID format";
