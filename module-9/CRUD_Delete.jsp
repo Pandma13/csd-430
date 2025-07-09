@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="MyStyleSheet.css">
 </head>
 <body>
+    <div class="container">
     <h1>Delete Book Record</h1>
     
     <jsp:useBean id='dbBean' class='database.DbBean' />
@@ -65,6 +66,6 @@
         out.print("</div>");
     }
     %>
-    
+    </div>
 </body>
 </html>
