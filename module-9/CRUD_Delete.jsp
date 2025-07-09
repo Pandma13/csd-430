@@ -56,12 +56,6 @@
         out.print("<h3>All Book Records</h3>");
         out.print(dbBean.readAll());
         out.print("</div>");
-    } else {
-        out.print("<div class='container'>");
-        out.print("<h3>Error</h3>");
-        out.print("<p>Invalid form data. Please try again.</p>");
-        out.print(dbBean.formGetPK("CRUD_Delete.jsp"));
-        out.print("</div>");
     }
     %>
     
