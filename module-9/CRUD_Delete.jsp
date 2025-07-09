@@ -45,13 +45,12 @@
         }
 
         out.print("<div class='container'>");
+        out.print("<h3>Delete Book Record</h3>");
+        out.print(dbBean.formGetPK("CRUD_Delete.jsp"));
+
+        
         out.print("<h3>Delete Result</h3>");
         out.print("<p>" + result + "</p>");
-
-        if (result != null && !result.startsWith("Error")) {
-            out.print("<h3>Deleted Book Record</h3>");
-            out.print(dbBean.read(result));
-        }
 
         out.print("<h3>All Book Records</h3>");
         out.print(dbBean.readAll());
