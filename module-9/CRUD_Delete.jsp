@@ -56,10 +56,11 @@
         out.print(dbBean.formGetPK("CRUD_Delete.jsp"));
 
         
-        out.print("<h3>Result</h3>");
+        out.print("<h3>Deleted Book Record</h3>");
+        out.print("<p>" + result + "</p>");
         out.print(bookRecord);
 
-        out.print("<h3>All Book Records</h3>");
+        out.print("<h3>All Book Records</h3>"); 
         out.print(dbBean.readAll());
         out.print("</div>");
     }
