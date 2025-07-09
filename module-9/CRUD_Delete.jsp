@@ -36,8 +36,7 @@
         
         if (bookIDStr != null) {
             try {
-                int bookID = Integer.parseInt(bookIDStr);
-                result = dbBean.delete(bookID);
+                result = dbBean.delete(bookIDStr);
             } catch (NumberFormatException e) {
                 result = "Error: Invalid Book ID format";
             }
